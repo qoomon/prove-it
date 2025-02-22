@@ -8,7 +8,7 @@ Prove your online identity with cryptography
 ### Domain
 ```js
 const domain = 'qoo.monster'
-const prove = await fetch(`https://dns.google/resolve?name=${domain}&type=TXT`)
+const proof = await fetch(`https://dns.google/resolve?name=${domain}&type=TXT`)
   .then(res => res.json())
   .then(body => body.Answer.filter(record => record.data.startsWith('proveit-domain-verification=')))
 ```
@@ -17,7 +17,7 @@ const prove = await fetch(`https://dns.google/resolve?name=${domain}&type=TXT`)
 ```js
 const gistUrl = 'https://gist.github.com/qoomon/6c04f280e4c0a8e0dc492246240f3830'
 const gist = gistUrl.match(/\/(?<owner>[^/]+)\/(?<id>[^/]+)$/).groups
-const prove = await fetch(`https://api.github.com/gists/${gist.id}`)
+const proof = await fetch(`https://api.github.com/gists/${gist.id}`)
   .then(res => res.json())
   .then(body => {
     if(body.owner.login === gist.owner) return body 
@@ -32,7 +32,7 @@ const prove = await fetch(`https://api.github.com/gists/${gist.id}`)
 const postUrl = 'https://bsky.app/profile/qoomon.bsky.social/post/3lh4aqjjy4k27'
 const post = postUrl.match(/profile\/(?<profile>[^/]+)\/post\/(?<id>[^/]+)$/).groups
 const uri = `at://${post.profile}/app.bsky.feed.post/${post.id}`
-const prove = await fetch(`https://public.api.bsky.app/xrpc/app.bsky.feed.getPostThread?uri=${encodeURIComponent(uri)}`)
+const proof = await fetch(`https://public.api.bsky.app/xrpc/app.bsky.feed.getPostThread?uri=${encodeURIComponent(uri)}`)
   .then(res => res.json())
   .then(body => body.thread.post.record.text)
 ```
@@ -40,7 +40,16 @@ const prove = await fetch(`https://public.api.bsky.app/xrpc/app.bsky.feed.getPos
 ### Reddit
 ```js
 const postUrl = 'https://www.reddit.com/user/qoomon/comments/1if3bc5/keyoxide_proof/'
-const prove = await fetch(`${postUrl.replace(/\/$/, '')}.json`)
+const proof = await fetch(`${postUrl.replace(/\/$/, '')}.json`)
   .then(res => res.json())
   .then(body => body[0].data.children[0].data.selftext)
+```
+
+### Stack Overflow
+```js
+const userUrl = 'https://stackoverflow.com/users/5376635/qoomon'
+const user = userUrl.match(/users\/(?<id>[^/]+)\/(?<name>[^/]+)$/).groups
+const proof = await fetch(`https://api.stackexchange.com/2.3/users/${user.id}?site=stackoverflow&filter=!AH)b5JqVyImf`)
+    .then(res => res.json())
+    .then(body => body.items[0].about_me)
 ```
