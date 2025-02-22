@@ -19,7 +19,11 @@ const gistUrl = 'https://gist.github.com/qoomon/6c04f280e4c0a8e0dc492246240f3830
 const gist = gistUrl.match(/\/(?<owner>[^/]+)\/(?<id>[^/]+)$/).groups
 const prove = await fetch(`https://api.github.com/gists/${gist.id}`)
   .then(res => res.json())
-  .then(body => body.owner === gist.owner ? Object.values(body.files)[0].content : null)
+  .then(body => {
+    if(body.owner.login === gist.owner) return body 
+    else throw new Error('invalid owner: ' + body.owner.login)
+  })
+  .then(body => Object.values(body.files)[0].content)
 
 ```
 
