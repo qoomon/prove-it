@@ -9,7 +9,8 @@ Prove your online identity with cryptography
 ```js
 // https://dns.google/query?name=XXXXXXXXXXX&type=TXT
 // === Proof ===
-// TXT record: prove-it-domain-verification=XXXXXXXXXXX
+// Add TXT record with folloing value
+// prove-it-domain-verification=PROOF_PROOF_PROOF
 // =============
 const domain = 'qoo.monster'
 const proof = await fetch(`https://dns.google/resolve?name=${domain}&type=TXT`)
@@ -22,9 +23,11 @@ const proof = await fetch(`https://dns.google/resolve?name=${domain}&type=TXT`)
 ```js
 // https://github.com/XXXXXXXXXXX/XXXXXXXXXXX/blob/HEAD/README.md
 // === Proof ===
+// Add PROOF_PROOF_PROOF to user profile README.md
+// Example:
 // ---
 // 
-// <sup><sub> **prove-it:** XXXXXXXXXXX </sub></sup>
+// <sup><sub> **prove-it:** PROOF_PROOF_PROOF </sub></sup>
 // =============
 const username = 'qoomon'
 const proof = await fetch(`https://raw.githubusercontent.com/${username}/${username}/HEAD/README.md`)
@@ -34,7 +37,8 @@ const proof = await fetch(`https://raw.githubusercontent.com/${username}/${usern
 ```js
 // https://gist.github.com/qoomon/6c04f280e4c0a8e0dc492246240f3830
 // === Proof ===
-// **Prove-it:** aspe:keyoxide.org:X2TJUL5QWM6CYZRFO6LLKFJ72Q
+// Create a gist with a 'prove-it.md' file and following content
+// PROOF_PROOF_PROOF
 // =============
 const gistId = 'XXXXXXXXXXX'
 const {username, proof} = await fetch(`https://api.github.com/gists/${gistId}`)
@@ -48,6 +52,10 @@ const {username, proof} = await fetch(`https://api.github.com/gists/${gistId}`)
 ### BlueSky
 ```js
 // https://bsky.app/profile/qoomon.bsky.social/post/XXXXXXXXXXX
+// === Proof ===
+// Create a post with folloing content
+// prove-it: PROOF_PROOF_PROOF
+// =============
 const profile = 'qoomon.bsky.social'
 const post = 'XXXXXXXXXXX'
 const proof = await fetch(`https://public.api.bsky.app/xrpc/app.bsky.feed.getPostThread?uri=${encodeURIComponent(`at://${profile}/app.bsky.feed.post/${post}`)}`)
@@ -59,9 +67,10 @@ const proof = await fetch(`https://public.api.bsky.app/xrpc/app.bsky.feed.getPos
 ```js
 // https://www.reddit.com/user/qoomon
 // === Proof ===
+// Add PROOF_PROOF_PROOF to user profile README.md
 // ---
 // 
-// <sup><sub> **prove-it:** XXXXXXXXXXX </sub></sup>
+// <sup><sub> **prove-it:** PROOF_PROOF_PROOF </sub></sup>
 // =============
 
 const postUrl = 'https://www.reddit.com/user/qoomon/comments/1if3bc5/keyoxide_proof/'
@@ -72,13 +81,15 @@ const proof = await fetch(`${postUrl.replace(/\/$/, '')}.json`)
 
 ### Stack Overflow
 ```js
-// https://stackoverflow.com/users/5376635/qoomon
+// https://stackoverflow.com/users/XXXXXXXXXXX
 // === Proof ===
+// Add PROOF_PROOF_PROOF to the profile 'about me' section
+// Example:
 // ---
 // 
-// <sup><sub> **Prove-it:** aspe:keyoxide.org:X2TJUL5QWM6CYZRFO6LLKFJ72Q </sub></sup>
+// <sup><sub> **Prove-it:** PROOF_PROOF_PROOF </sub></sup>
 // =============
-const user = '5376635'
+const user = 'XXXXXXXXXXX'
 const proof = await fetch(`https://api.stackexchange.com/2.3/users/${user}?site=stackoverflow&filter=!AH)b5JqVyImf`)
     .then(res => res.json())
     .then(body => body.items[0].about_me)
