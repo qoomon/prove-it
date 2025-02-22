@@ -14,11 +14,21 @@ const proof = await fetch(`https://dns.google/resolve?name=${domain}&type=TXT`)
 ```
 
 ### GitHub
+#### profile
 ```js
 const username = 'qoomon'
 const proof = await fetch(`https://raw.githubusercontent.com/${username}/${username}/HEAD/README.md`)
     .then(res => res.text())
-
+```
+#### gist
+```js
+const gistId = '6c04f280e4c0a8e0dc492246240f3830'
+const {username, proof} = await fetch(`https://api.github.com/gists/${gistId}`)
+  .then(res => res.json())
+  .then(body => ({
+    username: body.owner.login,
+    data: Object.values(body.files)[0].content,
+  }))
 ```
 
 ### BlueSky
