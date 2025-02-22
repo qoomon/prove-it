@@ -12,7 +12,7 @@ Prove your online identity with cryptography
 // Add TXT record with folloing value
 // prove-it-domain-verification=PROOF_PROOF_PROOF
 // =============
-const domain = 'qoo.monster'
+const domain = 'XXXXXXXXXXX'
 const proof = await fetch(`https://dns.google/resolve?name=${domain}&type=TXT`)
   .then(res => res.json())
   .then(body => body.Answer.filter(record => record.data.startsWith('proveit-domain-verification=')))
@@ -29,13 +29,13 @@ const proof = await fetch(`https://dns.google/resolve?name=${domain}&type=TXT`)
 // 
 // <sup><sub> **prove-it:** PROOF_PROOF_PROOF </sub></sup>
 // =============
-const username = 'qoomon'
+const username = 'XXXXXXXXXXX'
 const proof = await fetch(`https://raw.githubusercontent.com/${username}/${username}/HEAD/README.md`)
     .then(res => res.text())
 ```
 #### gist
 ```js
-// https://gist.github.com/qoomon/6c04f280e4c0a8e0dc492246240f3830
+// https://gist.github.com/USER_NAME/XXXXXXXXXXX
 // === Proof ===
 // Create a gist with a 'prove-it.md' file and following content
 // PROOF_PROOF_PROOF
@@ -51,13 +51,13 @@ const {username, proof} = await fetch(`https://api.github.com/gists/${gistId}`)
 
 ### BlueSky
 ```js
-// https://bsky.app/profile/qoomon.bsky.social/post/XXXXXXXXXXX
+// https://bsky.app/profile/XXXXXXXXXXX/post/YYYYYYYYYYY
 // === Proof ===
 // Create a post with folloing content
 // prove-it: PROOF_PROOF_PROOF
 // =============
-const profile = 'qoomon.bsky.social'
-const post = 'XXXXXXXXXXX'
+const profile = 'XXXXXXXXXXX'
+const post = 'YYYYYYYYYYY'
 const proof = await fetch(`https://public.api.bsky.app/xrpc/app.bsky.feed.getPostThread?uri=${encodeURIComponent(`at://${profile}/app.bsky.feed.post/${post}`)}`)
   .then(res => res.json())
   .then(body => body.thread.post.record.text)
@@ -65,16 +65,16 @@ const proof = await fetch(`https://public.api.bsky.app/xrpc/app.bsky.feed.getPos
 
 ### Reddit
 ```js
-// https://www.reddit.com/user/qoomon
+// https://www.reddit.com/user/XXXXXXXXXXX/comments/YYYYYYYYYY/
 // === Proof ===
 // Add PROOF_PROOF_PROOF to user profile README.md
 // ---
 // 
 // <sup><sub> **prove-it:** PROOF_PROOF_PROOF </sub></sup>
 // =============
-
-const postUrl = 'https://www.reddit.com/user/qoomon/comments/1if3bc5/keyoxide_proof/'
-const proof = await fetch(`${postUrl.replace(/\/$/, '')}.json`)
+const user = 'XXXXXXXXXXX'
+const post = 'YYYYYYYYYYY'
+const proof = await fetch(`https://www.reddit.com/user/${user}/comments/${post}.json`)
   .then(res => res.json())
   .then(body => body[0].data.children[0].data.selftext)
 ```
@@ -93,4 +93,5 @@ const user = 'XXXXXXXXXXX'
 const proof = await fetch(`https://api.stackexchange.com/2.3/users/${user}?site=stackoverflow&filter=!AH)b5JqVyImf`)
     .then(res => res.json())
     .then(body => body.items[0].about_me)
+// TODO get username
 ```
