@@ -90,7 +90,7 @@ const proof = await fetch(`https://www.reddit.com/user/${user}/comments/${post}.
 // <sup><sub> **Prove-it:** PROOF_PROOF_PROOF </sub></sup>
 // =============
 const user = 'XXXXXXXXXXX'
-const proof = await fetch(`https://api.stackexchange.com/2.3/users/${user}?site=stackoverflow&filter=!AH)b5JqVyImf`)
+const proof = await fetch(`https://api.stackexchange.com/2.3/users/${user}?&site=stackoverflow&filter=!AhdF6aF0yuI-5W*ymYcd-`)
     .then(res => res.json())
     .then(body => body.items[0].about_me)
 // TODO get username
