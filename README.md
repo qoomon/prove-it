@@ -36,3 +36,11 @@ const prove = await fetch(`https://public.api.bsky.app/xrpc/app.bsky.feed.getPos
   .then(res => res.json())
   .then(body => body.thread.post.record.text)
 ```
+
+### Reddit
+```js
+const postUrl = 'https://www.reddit.com/user/qoomon/comments/1if3bc5/keyoxide_proof/'
+const prove = await fetch(`${postUrl.replace(/\/$/, '')}.json`)
+  .then(res => res.json())
+  .then(body => body[0].data.children[0].data.selftext)
+```
