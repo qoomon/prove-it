@@ -1,0 +1,39 @@
+
+<!doctype html>
+<html>
+<head>
+    <title>prove it</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <style type="text/css">
+    
+    </style>    
+</head>
+
+<body>
+  <div id="domain">
+    <div class="prove"></div>
+      
+    <script>
+      const domain = 'qoo.monster'
+
+      document.querySelector('#domain').innerText=`Domain '${domain}' - ⚙️ Verifying...`
+  
+      const proof = await fetch(`https://dns.google/resolve?name=${domain}&type=TXT`)
+        .then(res => res.json())
+        .then(body => body.Answer.filter(record => record.data.startsWith('proveit-domain-verification=')))
+
+      if (proof.any(proof => proof.includes('PROOF_PROOF_PROOF')) {
+        const proofUrl = `https://dns.google/query?name=${domain}&type=TXT`
+        document.querySelector('#domain').innerHTML=`<div>Domain '${domain}' - ✅</div>\n` +
+          `<a href="${proofUrl}">${proofUrl}</a>`
+      } else {
+        document.querySelector('#domain').innerText=`Domain '${domain}' - ❌`
+      }
+    </script>
+  </div>
+</body>
+</html>
