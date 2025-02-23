@@ -36,7 +36,7 @@ const user = 'XXXXXXXXXXX'
 const proof = await fetch(`https://raw.githubusercontent.com/${user}/${user}/HEAD/README.md`)
     .then(res => res.text())
 
-const proofUrl = `https://github.com/${user}/${user}/blob/HEAD/README.md`
+const proofUrl = `https://github.com/${user}`
 ```
 
 #### gist
