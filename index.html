@@ -19,9 +19,11 @@
       
     <script>
     (async () => {
+      const proofElement = document.querySelector('#domain  > div.prove')
+        
       const domain = 'qoo.monster'
 
-      document.querySelector('#domain').innerText=`Domain '${domain}' - ⚙️ Verifying...`
+      proofElement.innerText=`Domain '${domain}' - ⚙️ Verifying...`
   
       const proof = await fetch(`https://dns.google/resolve?name=${domain}&type=TXT`)
         .then(res => res.json())
@@ -29,10 +31,35 @@
 
       if (proof.some(proof => proof.includes('PROOF_PROOF_PROOF'))) {
         const proofUrl = `https://dns.google/query?name=${domain}&type=TXT`
-        document.querySelector('#domain').innerHTML=`<div>Domain '${domain}' - ✅</div>\n` +
+        proofElement.innerHTML=`<div>Domain '${domain}' - ✅</div>\n` +
           `<a href="${proofUrl}">${proofUrl}</a>`
       } else {
-        document.querySelector('#domain').innerText=`Domain '${domain}' - ❌`
+        proofElement.innerText=`Domain '${domain}' - ❌`
+      }
+    })();
+    </script>
+  </div>
+
+  <div id="github">
+    <div class="prove"></div>
+      
+    <script>
+    (async () => {
+      const proofElement = document.querySelector('#github > div.prove')
+        
+      const user = 'qoomon'
+
+      proofElement.innerText=`GitHub '${user}' - ⚙️ Verifying...`
+  
+      const proof = await fetch(`https://raw.githubusercontent.com/${user}/${user}/HEAD/README.md`)
+        .then(res => res.text())
+
+      if (proof.some(proof => proof.includes('PROOF_PROOF_PROOF'))) {
+        const proofUrl = `https://github.com/${user}/${user}/blob/HEAD/README.md`
+        proofElement.innerHTML=`<div>GitHub '${user}' - ✅</div>\n` +
+          `<a href="${proofUrl}">${proofUrl}</a>`
+      } else {
+        proofElement.innerText=`GitHub '${user}' - ❌`
       }
     })();
     </script>
