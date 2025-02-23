@@ -18,6 +18,7 @@
     <div class="prove"></div>
       
     <script>
+    (async () => {
       const domain = 'qoo.monster'
 
       document.querySelector('#domain').innerText=`Domain '${domain}' - ⚙️ Verifying...`
@@ -33,6 +34,7 @@
       } else {
         document.querySelector('#domain').innerText=`Domain '${domain}' - ❌`
       }
+    })();
     </script>
   </div>
 </body>
