@@ -29,7 +29,7 @@
         .then(res => res.json())
         .then(body => body.Answer.filter(record => record.data.startsWith('proveit-domain-verification=')))
 
-      if (proof.some(proof => proof.includes('PROOF_PROOF_PROOF'))) {
+      if (proof.some(proof => proof.includes('PROOF_PROOF_PROOF')) {
         const proofUrl = `https://dns.google/query?name=${domain}&type=TXT`
         proofElement.innerHTML=`<div>Domain '${domain}' - ✅</div>\n` +
           `<a href="${proofUrl}">${proofUrl}</a>`
