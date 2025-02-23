@@ -146,7 +146,9 @@ Create a post with folloing content `prove-it: PROOF_PROOF_PROOF`
 const user = 'XXXXXXXXXXX'
 const post = 'YYYYYYYYYYY'
 
-const proof = await fetch(`https://cors-tube.vercel.app/?url=${encodeURIComponent(`https://publish.twitter.com/oembed?url=${encodeURIComponent(`https://x.com/${user}/status/${post}`)}`)}`)
+const proof = await fetch('https://cors-tube.vercel.app/?url=' +
+  encodeURIComponent('https://publish.twitter.com/oembed?url=' +
+  encodeURIComponent(`https://x.com/${user}/status/${post}`)))
   .then(res => res.json())
   .then(body => body.html)
 
