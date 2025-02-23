@@ -26,8 +26,7 @@ const proofUrl = `https://dns.google/query?name=${domain}&type=TXT`
 #### profile
 Add proof to your user profile `README.md` like this
 ```md
----
-
+#
 <sup><sub> **prove-it:** PROOF_PROOF_PROOF </sub></sup>
 ```
 
@@ -88,7 +87,6 @@ const proofUrl = `https://www.reddit.com/user/${user}/comments/${post}/`
 Add `PROOF_PROOF_PROOF` to your profile `about me` section like this
 ```md
 ---
-
 <sup><sub> **prove-it:** PROOF_PROOF_PROOF </sub></sup>
 ```
 
