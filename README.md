@@ -121,3 +121,15 @@ const proof = await fetch(`https://hacker-news.firebaseio.com/v0/user/${user}.js
 
 const proofUrl = `https://news.ycombinator.com/user?id=${user}`
 ```
+
+### Mastodon
+
+```js
+const user = 'XXXXXXXXXXX'
+
+const proof = await fetch('https://chaos.social/@${user}', {headers: {accept: 'application/activity+json'}})
+  .then(res => res.json())
+  .then(body => body.attachement.find(att => att.name === 'prove-it')?.value)
+
+const proofUrl = `https://chaos.social/@${user}`
+```
