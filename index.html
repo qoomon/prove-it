@@ -24,16 +24,17 @@
       const domain = 'qoo.monster'
 
       proofElement.innerText=`Domain '${domain}' - ⚙️ Verifying...`
-  
+
+      
       const proof = await fetch(`https://dns.google/resolve?name=${domain}&type=TXT`)
         .then(res => res.json())
         .then(body => body.Answer.filter(record => record.data.startsWith('proveit-domain-verification=')))
-
+      const proofUrl = `https://dns.google/query?name=${domain}&type=TXT`
+        
       if (proof.some(proof => proof.includes('PROOF_PROOF_PROOF'))) {
-        const proofUrl = `https://dns.google/query?name=${domain}&type=TXT`
-        proofElement.innerHTML=`<h3>Domain '${domain}'</h3> <a href="${proofUrl}">✅ ${proofUrl}</a>`
+        proofElement.innerHTML=`<h3>Domain '${domain}' <a href="${proofUrl}">✅</a></h3>`
       } else {
-        proofElement.innerHTML=`<h3>Domain '${domain}'</h3> <a href="${proofUrl}">❌ ${proofUrl}</a>`
+        proofElement.innerHTML=`<h3>Domain '${domain}' <a href="${proofUrl}">❌</a></h3>`
       }
     })();
     </script>
@@ -52,12 +53,13 @@
   
       const proof = await fetch(`https://raw.githubusercontent.com/${user}/${user}/HEAD/README.md`)
         .then(res => res.text())
-
+      const proofUrl = `https://github.com/${user}`
+        
       if (proof.includes('PROOF_PROOF_PROOF')) {
-        const proofUrl = `https://github.com/${user}`
-        proofElement.innerHTML=`<h3>GitHub '${user}'</h3> <a href="${proofUrl}">✅ ${proofUrl}</a>`
+       
+        proofElement.innerHTML=`<h3>GitHub '${user}' <a href="${proofUrl}">✅</a></h3>`
       } else {
-        proofElement.innerHTML=`<h3>GitHub '${user}'</h3> <a href="${proofUrl}">❌ ${proofUrl}</a>`
+        proofElement.innerHTML=`<h3>GitHub '${user}' <a href="${proofUrl}">❌</a></h3>`
       }
     })();
     </script>
