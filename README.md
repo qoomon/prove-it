@@ -6,7 +6,10 @@ Prove your online identity with cryptography
 ## Supported Claims
 
 ### Domain
-Add following dns `TXT record` to your domain `prove-it-domain-verification=PROOF_PROOF_PROOF`
+Add following `DNS TXT record` to your domain 
+```
+prove-it-domain-verification=PROOF_PROOF_PROOF
+```
 
 ```js
 const domain = 'XXXXXXXXXXX'
@@ -18,12 +21,10 @@ const proof = await fetch(`https://dns.google/resolve?name=${domain}&type=TXT`)
 const proofUrl = `https://dns.google/query?name=${domain}&type=TXT`
 ```
 
-
-
 ### GitHub
 
 #### profile
-Add `PROOF_PROOF_PROOF` to user profile `README.md` like this
+Add proof to your user profile `README.md` like this
 ```md
 ---
 
@@ -84,7 +85,7 @@ const proofUrl = `https://www.reddit.com/user/${user}/comments/${post}/`
 ```
 
 ### Stack Overflow
-Add `PROOF_PROOF_PROOF` to the profile `about me` section like this
+Add `PROOF_PROOF_PROOF` to your profile `about me` section like this
 ```md
 ---
 
@@ -103,4 +104,20 @@ const {username, proof} = await fetch(`https://api.stackexchange.com/2.3/users/$
     }))
 
 const proofUrl = `https://stackoverflow.com/users/${userId}/${username}`
+```
+
+### Hacker News
+Add `PROOF_PROOF_PROOF` to your profile `about` section like this
+```
+[ prove-it: PROOF_PROOF_PROOF ]
+```
+
+```js
+const user = 'XXXXXXXXXXX'
+
+const proof = await fetch(`https://hacker-news.firebaseio.com/v0/user/${user}.json`)
+  .then(res => res.json())
+  .then(body => body.about)
+
+const proofUrl = `https://news.ycombinator.com/user?id=${user}`
 ```
