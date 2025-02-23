@@ -55,7 +55,7 @@
         .then(res => res.text())
 
       if (proof.includes('PROOF_PROOF_PROOF')) {
-        const proofUrl = `https://github.com/${user}/${user}/blob/HEAD/README.md`
+        const proofUrl = `https://github.com/${user}`
         proofElement.innerHTML=`<div>GitHub '${user}' - ✅</div>\n` +
           `<a href="${proofUrl}">${proofUrl}</a>`
       } else {
