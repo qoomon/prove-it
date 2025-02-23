@@ -31,10 +31,9 @@
 
       if (proof.some(proof => proof.includes('PROOF_PROOF_PROOF'))) {
         const proofUrl = `https://dns.google/query?name=${domain}&type=TXT`
-        proofElement.innerHTML=`<div>Domain '${domain}' - ✅</div>\n` +
-          `<a href="${proofUrl}">${proofUrl}</a>`
+        proofElement.innerHTML=`<h3>Domain '${domain}'</h3> <a href="${proofUrl}">✅ ${proofUrl}</a>`
       } else {
-        proofElement.innerText=`Domain '${domain}' - ❌`
+        proofElement.innerHTML=`<h3>Domain '${domain}'</h3> <a href="${proofUrl}">❌ ${proofUrl}</a>`
       }
     })();
     </script>
@@ -56,10 +55,9 @@
 
       if (proof.includes('PROOF_PROOF_PROOF')) {
         const proofUrl = `https://github.com/${user}`
-        proofElement.innerHTML=`<div>GitHub '${user}' - ✅</div>\n` +
-          `<a href="${proofUrl}">${proofUrl}</a>`
+        proofElement.innerHTML=`<h3>GitHub '${user}'</h3> <a href="${proofUrl}">✅ ${proofUrl}</a>`
       } else {
-        proofElement.innerText=`GitHub '${user}' - ❌`
+        proofElement.innerHTML=`<h3>GitHub '${user}'</h3> <a href="${proofUrl}">❌ ${proofUrl}</a>`
       }
     })();
     </script>
