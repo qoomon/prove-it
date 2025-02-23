@@ -11,9 +11,30 @@
     <style type="text/css">
     
     </style>    
+    <script src="https://unpkg.com/browse/openpgp@6.1.0/dist/openpgp.min.js"></script>
 </head>
 
 <body>
+  <script>
+  (async () => {
+    const publicKey = await openpgp.readKey({ armoredKey: `-----BEGIN PGP PUBLIC KEY BLOCK-----
+...
+-----END PGP PUBLIC KEY BLOCK-----` });
+
+    const verificationResult = await openpgp.verify({
+        message: 'CLAIM',
+        verificationKeys: publicKey
+    });
+    const { verified, keyID } = verificationResult.signatures[0];
+    try {
+        await verified; // throws on invalid signature
+        console.log('Signed by key id ' + keyID.toHex());
+    } catch (e) {
+        throw new Error('Signature could not be verified: ' + e.message);
+    }
+  })();
+  </script>
+    
   <div id="domain">
     <div class="prove"></div>
       
